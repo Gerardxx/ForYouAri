@@ -2,7 +2,7 @@
     function random(min, max) {
         return min + Math.floor(Math.random() * (max - min + 1));
     }
-    function bezier(cp, t) {         
+    function bezier(cp, t) {        
         var p1 = cp[0].mul((1 - t) * (1 - t));
         var p2 = cp[1].mul(2 * t * (1 - t));
         var p3 = cp[2].mul(t * t); 
@@ -66,22 +66,20 @@
         }
     }
 
-    // Girasol Romántico y Profesional (Doble capa, luz y semillas doradas)
+    // Dibujo del Girasol en Canvas
     function drawSunflower(ctx) {
         ctx.save();
         
-        // Base sólida luminosa para tapar cualquier espacio
         ctx.beginPath();
         ctx.arc(0, 0, 12, 0, 2 * Math.PI);
         ctx.fillStyle = "#FFB300";
         ctx.fill();
 
-        // DOBLE CAPA DE PÉTALOS: Crea un efecto realista y muy tupido
         for (var layer = 0; layer < 2; layer++) {
             var isBackLayer = (layer === 0);
-            var petalCount = isBackLayer ? 16 : 12; // 16 pétalos atrás, 12 adelante
+            var petalCount = isBackLayer ? 16 : 12;
             var scale = isBackLayer ? 1 : 0.85;
-            var offset = isBackLayer ? 0 : (Math.PI / petalCount); // Rotación intercalada
+            var offset = isBackLayer ? 0 : (Math.PI / petalCount);
 
             for (var i = 0; i < petalCount; i++) {
                 ctx.save();
@@ -89,21 +87,19 @@
                 ctx.scale(scale, scale);
                 ctx.beginPath();
                 
-                // Gradiente espectacular para los pétalos
                 var petGrad = ctx.createLinearGradient(0, 0, 0, -24);
                 if (isBackLayer) {
-                    petGrad.addColorStop(0, "#FF8F00"); // Naranja oscuro en la base
-                    petGrad.addColorStop(1, "#FFC107"); // Amarillo en la punta
+                    petGrad.addColorStop(0, "#FF8F00");
+                    petGrad.addColorStop(1, "#FFC107");
                 } else {
-                    petGrad.addColorStop(0, "#FFA000"); // Naranja claro
-                    petGrad.addColorStop(1, "#FFF59D"); // Punta amarilla muy brillante y romántica
+                    petGrad.addColorStop(0, "#FFA000");
+                    petGrad.addColorStop(1, "#FFF59D");
                 }
                 
                 ctx.fillStyle = petGrad;
-                ctx.strokeStyle = "rgba(139, 69, 19, 0.2)"; // Borde sutil
+                ctx.strokeStyle = "rgba(139, 69, 19, 0.2)";
                 ctx.lineWidth = 0.5;
                 
-                // Forma de pétalo orgánica y delicada con curvas Bezier
                 ctx.moveTo(0, 0);
                 ctx.bezierCurveTo(7, -8, 7, -18, 0, -24);
                 ctx.bezierCurveTo(-7, -18, -7, -8, 0, 0);
@@ -114,23 +110,20 @@
             }
         }
 
-        // Centro del girasol degradado (Efecto 3D)
         ctx.beginPath();
         ctx.arc(0, 0, 7.5, 0, 2 * Math.PI);
         var centerGrad = ctx.createRadialGradient(0, 0, 1, 0, 0, 7.5);
-        centerGrad.addColorStop(0, "#5D4037"); // Centro iluminado
+        centerGrad.addColorStop(0, "#5D4037");
         centerGrad.addColorStop(0.7, "#3E2723");
-        centerGrad.addColorStop(1, "#1B0000"); // Borde oscuro
+        centerGrad.addColorStop(1, "#1B0000");
         ctx.fillStyle = centerGrad;
         ctx.fill();
 
-        // Polvo de hadas y semillas (Toque romántico dorado)
         for (var j = 0; j < 14; j++) {
             ctx.beginPath();
             var angle = random(0, 360) * Math.PI / 180;
             var dist = random(0, 60) / 10;
             ctx.arc(Math.cos(angle) * dist, Math.sin(angle) * dist, random(4, 9) / 10, 0, 2 * Math.PI);
-            // Algunas semillas son oscuras, otras son chispas de oro
             ctx.fillStyle = (j % 3 === 0) ? "#000000" : "#050505"; 
             ctx.fill();
         }
@@ -141,7 +134,7 @@
     Seed = function(tree, point, scale, color) {
         this.tree = tree;
         var scale = scale || 1;
-        var color = '#5D4037'; // Marrón elegante para el origen
+        var color = '#5D4037';
         this.heart = {
             point  : point,
             scale  : scale,
@@ -211,8 +204,8 @@
             var ctx = this.tree.ctx, heart = this.heart;
             var point = heart.point, scale = heart.scale;
             ctx.save();
-            ctx.strokeStyle = "#8D6E63"; // Línea sutil
-            ctx.fillStyle = "#4E342E";  // Texto chocolate elegante
+            ctx.strokeStyle = "#8D6E63";
+            ctx.fillStyle = "#4E342E";
             ctx.translate(point.x, point.y);
             ctx.scale(scale, scale);
             ctx.moveTo(0, 0);
@@ -221,9 +214,8 @@
             ctx.stroke();
             ctx.moveTo(0, 0);
             ctx.scale(0.75, 0.75);
-            // Fuente romántica, cursiva si está disponible, si no Georgia serif
             ctx.font = "italic bold 15px Georgia, 'Times New Roman', serif"; 
-            ctx.fillText("  Click Aquí", 23, 16);
+            ctx.fillText("   Toca Aquí", 23, 16);
             ctx.restore();
         },
         clear: function() {
@@ -252,7 +244,7 @@
             var ctx = this.tree.ctx, point = this.point;
             var len = this.length / 2;
             ctx.save();
-            ctx.strokeStyle = '#4E342E'; // Base del suelo a juego con el árbol
+            ctx.strokeStyle = '#4E342E';
             ctx.lineWidth = this.height;
             ctx.lineCap = 'round';
             ctx.lineJoin = 'round';
@@ -307,7 +299,7 @@
         initBloom: function() {
             var bloom = this.opt.bloom || {};
             var cache = [], 
-                num = 500, // Optimizado: Cantidad ligera para carga ultra rápida y fluida
+                num = 500,
                 width = bloom.width || this.width,
                 height = bloom.height || this.height,
                 figure = this.seed.heart.figure;
@@ -488,7 +480,6 @@
             var ctx = s.tree.ctx;
             ctx.save();
             ctx.beginPath();                    
-            // Tronco y ramas con un tono Caoba cálido y romántico
             ctx.fillStyle = '#5D4037'; 
             ctx.shadowColor = '#3E2723'; 
             ctx.shadowBlur = 4;
@@ -544,10 +535,9 @@
             } else {
                 s.draw();
                 
-                // EFECTO MÁGICO: Ahora las flores se balancean suavemente mientras caen (como hojas al viento)
                 s.point.x += Math.sin(s.angle * 2) * 1.5; 
                 s.point = s.place.sub(s.point).div(s.speed * 1.1).add(s.point);
-                s.angle += 0.03; // Rotación más suave y lenta
+                s.angle += 0.03; 
                 s.speed -= 1;
             }
         }
