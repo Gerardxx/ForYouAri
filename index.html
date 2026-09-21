@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>21 de Septiembre by Gerardx</title>
+    <link rel="icon" type="image/x-icon" href="Love_files/icon.png">
+    <meta name="language" content="es-ES">
+    <meta name="title" content="21 de Septiembre by Gerardx">
+    <link type="text/css" rel="stylesheet" href="./Love_files/default.css">
+    
+    <!-- Importamos fuentes desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Reset y adaptabilidad global para móviles */
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #ffe;
+        }
+
+        #main {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #wrap {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            height: 680px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Canvas */
+        #canvas {
+            width: 100% !important;
+            height: auto !important;
+            max-width: 1100px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Posicionamiento adaptativo del contenedor de texto */
+        #text {
+            position: absolute;
+            top: 40px;
+            left: 5%;
+            width: 90%;
+            max-width: 450px;
+            z-index: 10;
+        }
+
+        /* Estilo del texto del mensaje */
+        #code {
+            font-family: 'Caveat', cursive, sans-serif !important;
+            font-size: clamp(16px, 4.5vw, 22px) !important;
+            line-height: 1.35 !important;
+            color: #4E342E !important;
+            word-wrap: break-word;
+        }
+
+        /* Estilo del título */
+        #code .titulo {
+            font-size: clamp(22px, 6vw, 30px) !important;
+            font-weight: bold !important;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        /* Pie de página estilo sello personal */
+        footer {
+            position: fixed;
+            bottom: 12px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #6D4C41;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            z-index: 999;
+            pointer-events: none;
+        }
+
+        footer span {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 6px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(109, 76, 65, 0.2);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        /* Ajustes específicos para pantallas pequeñas (iOS & Android) */
+        @media screen and (max-width: 600px) {
+            #text {
+                top: 20px;
+                left: 4%;
+                width: 92%;
+            }
+            
+            #wrap {
+                height: auto;
+                min-height: 550px;
+            }
+        }
+    </style>
+
+    <script type="text/javascript" src="./Love_files/jquery.min.js"></script>
+    <script type="text/javascript" src="./Love_files/jscex.min.js"></script>
+    <script type="text/javascript" src="./Love_files/jscex-parser.js"></script>
+    <script type="text/javascript" src="./Love_files/jscex-jit.js"></script>
+    <script type="text/javascript" src="./Love_files/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="./Love_files/jscex-async.min.js"></script>
+    <script type="text/javascript" src="./Love_files/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="./Love_files/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./Love_files/love.js" charset="utf-8"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="error">
+            Tu navegador actual no es compatible con el contenido interactivo. 
+            Por favor, abre esta página desde Google Chrome o Safari.
+        </div>
+        <div id="wrap">
+            <div id="text">
+                <div id="code">
+                    <span class="say titulo">🌻 Feliz inicio de Primavera</span><br><br>
+                    <span class="say">Se que las flores naturales se marchitan pero hoy te regalo algo duradero y permanente que se mantiene en la web.</span><br>
+                    <span class="say">Dicen que esta es la estación en la que todo vuelve a florecer y la vida se llena de colores, pero si te soy sincero, para mí el sol brilla un poco más fuerte y todo se siente mucho más bonito desde que te conoci.</span><br>
+                    <span class="say">Que estas flores te recuerden lo especial que eres para mi.</span><br><br>
+                    <span class="say"><span class="space"></span>    Te quiero!</span>
+                </div>
+            </div>
+
+            <canvas id="canvas" width="1100" height="680"></canvas>
+        </div>
+    </div>
+
+    <!-- Sello de autoría en el pie de página -->
+    <footer>
+        <span>Hecho con ❤️ por Gerardo</span>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
