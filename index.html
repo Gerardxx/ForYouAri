@@ -7,17 +7,19 @@
     <link rel="icon" type="image/x-icon" href="Love_files/icon.png">
     <meta name="language" content="es-ES">
     <meta name="title" content="21 de Septiembre by Gerardx">
-    <link type="text/css" rel="stylesheet" href="./Love_files/default.css">
     
-    <!-- Importamos fuentes desde Google Fonts -->
+    <!-- Fuentes desde Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Dancing+Script:wght@500;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
-        /* Reset y adaptabilidad global para móviles */
+        /* Reset y adaptabilidad global */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         html, body {
             width: 100%;
             height: 100%;
@@ -25,17 +27,25 @@
             padding: 0;
             overflow-x: hidden;
             background-color: #ffe;
+            font-family: sans-serif;
         }
 
         #main {
             width: 100%;
-            max-width: 1100px;
-            margin: 0 auto;
-            position: relative;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            position: relative;
+            padding: 10px;
+        }
+
+        #error {
+            display: none;
+            color: #d32f2f;
+            text-align: center;
+            padding: 20px;
+            font-size: 16px;
         }
 
         #wrap {
@@ -44,18 +54,22 @@
             max-width: 1100px;
             height: 680px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Responsive Canvas */
+        /* Canvas interactivo */
         #canvas {
+            display: block;
             width: 100% !important;
             height: auto !important;
             max-width: 1100px;
-            display: block;
             margin: 0 auto;
+            cursor: pointer;
         }
 
-        /* Posicionamiento adaptativo del contenedor de texto */
+        /* Contenedor de texto */
         #text {
             position: absolute;
             top: 40px;
@@ -63,26 +77,37 @@
             width: 90%;
             max-width: 450px;
             z-index: 10;
+            pointer-events: none;
         }
 
-        /* Estilo del texto del mensaje */
+        /* Estilo del texto */
         #code {
+            display: none;
             font-family: 'Caveat', cursive, sans-serif !important;
             font-size: clamp(16px, 4.5vw, 22px) !important;
             line-height: 1.35 !important;
             color: #4E342E !important;
             word-wrap: break-word;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 18px;
+            border-radius: 16px;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         /* Estilo del título */
         #code .titulo {
+            font-family: 'Dancing Script', cursive, sans-serif;
             font-size: clamp(22px, 6vw, 30px) !important;
             font-weight: bold !important;
             display: inline-block;
             margin-bottom: 8px;
+            color: #d81b60;
         }
 
-        /* Pie de página estilo sello personal */
+        /* Pie de página */
         footer {
             position: fixed;
             bottom: 12px;
@@ -99,7 +124,7 @@
         }
 
         footer span {
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.85);
             padding: 6px 16px;
             border-radius: 20px;
             backdrop-filter: blur(4px);
@@ -108,14 +133,14 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        /* Ajustes específicos para pantallas pequeñas (iOS & Android) */
+        /* Ajustes específicos para móviles (iOS / Android) */
         @media screen and (max-width: 600px) {
             #text {
-                top: 20px;
+                top: 15px;
                 left: 4%;
                 width: 92%;
             }
-            
+
             #wrap {
                 height: auto;
                 min-height: 550px;
@@ -123,6 +148,7 @@
         }
     </style>
 
+    <!-- Scripts de la animación original -->
     <script type="text/javascript" src="./Love_files/jquery.min.js"></script>
     <script type="text/javascript" src="./Love_files/jscex.min.js"></script>
     <script type="text/javascript" src="./Love_files/jscex-parser.js"></script>
@@ -143,9 +169,9 @@
             <div id="text">
                 <div id="code">
                     <span class="say titulo">🌻 Feliz inicio de Primavera</span><br><br>
-                    <span class="say">Se que las flores naturales se marchitan pero hoy te regalo algo duradero y permanente que se mantiene en la web.</span><br>
-                    <span class="say">Dicen que esta es la estación en la que todo vuelve a florecer y la vida se llena de colores, pero si te soy sincero, para mí el sol brilla un poco más fuerte y todo se siente mucho más bonito desde que te conoci.</span><br>
-                    <span class="say">Que estas flores te recuerden lo especial que eres para mi.</span><br><br>
+                    <span class="say">Sé que las flores naturales se marchitan pero hoy te regalo algo duradero y permanente que se mantiene en la web.</span><br>
+                    <span class="say">Dicen que esta es la estación en la que todo vuelve a florecer y la vida se llena de colores, pero si te soy sincero, para mí el sol brilla un poco más fuerte y todo se siente mucho más bonito desde que te conocí.</span><br>
+                    <span class="say">Que estas flores te recuerden lo especial que eres para mí.</span><br><br>
                     <span class="say"><span class="space"></span>    Te quiero!</span>
                 </div>
             </div>
@@ -154,11 +180,170 @@
         </div>
     </div>
 
-    <!-- Sello de autoría en el pie de página -->
+    <!-- Pie de página -->
     <footer>
         <span>Hecho con ❤️ por Gerardo</span>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Script principal corregido con soporte táctil -->
+    <script>
+        (function () {
+            var canvas = $('#canvas');
+            if (!canvas[0] || !canvas[0].getContext) {
+                $("#error").show();
+                return false;
+            }
+
+            var width = 1100;
+            var height = 680;
+
+            canvas.attr("width", width);
+            canvas.attr("height", height);
+
+            var opts = {
+                seed: {
+                    x: width / 2 - 20,
+                    color: "rgb(190, 26, 37)",
+                    scale: 4
+                },
+                branch: [
+                    [535, 680, 570, 250, 500, 200, 30, 100, [
+                        [540, 500, 455, 417, 340, 400, 13, 100, [
+                            [450, 435, 434, 430, 394, 395, 2, 40]
+                        ]],
+                        [550, 445, 600, 356, 680, 345, 12, 100, [
+                            [578, 400, 648, 409, 661, 426, 3, 80]
+                        ]],
+                        [539, 281, 537, 248, 534, 217, 3, 40],
+                        [546, 397, 413, 247, 328, 244, 9, 80, [
+                            [427, 286, 383, 253, 371, 205, 2, 40],
+                            [498, 345, 435, 315, 395, 330, 4, 60]
+                        ]],
+                        [546, 357, 608, 252, 678, 221, 6, 100, [
+                            [590, 293, 646, 277, 648, 271, 2, 80]
+                        ]]
+                    ]]
+                ],
+                bloom: {
+                    num: 150,
+                    width: 1080,
+                    height: 650,
+                },
+                footer: {
+                    width: 1200,
+                    height: 5,
+                    speed: 10,
+                }
+            };
+
+            var tree = new Tree(canvas[0], width, height, opts);
+            var seed = tree.seed;
+            var foot = tree.footer;
+            var hold = 1;
+
+            // Manejador de eventos adaptado para clics y toques móviles
+            var triggerSeed = function (e) {
+                var offset = canvas.offset(), x, y;
+                var evt = e.originalEvent && e.originalEvent.touches ? e.originalEvent.touches[0] : e;
+                x = evt.pageX - offset.left;
+                y = evt.pageY - offset.top;
+
+                if (seed.hover(x, y) || e.type === "touchstart") {
+                    hold = 0;
+                    canvas.unbind("click touchstart");
+                    canvas.unbind("mousemove");
+                    canvas.removeClass('hand');
+                }
+            };
+
+            canvas.bind("click touchstart", triggerSeed);
+
+            canvas.mousemove(function (e) {
+                var offset = canvas.offset(), x, y;
+                x = e.pageX - offset.left;
+                y = e.pageY - offset.top;
+                canvas.toggleClass('hand', seed.hover(x, y));
+            });
+
+            $(document).keydown(function(e) {
+                if (e.keyCode === 13) {
+                    if (hold) {
+                        hold = 0;
+                        canvas.unbind("click touchstart");
+                        canvas.unbind("mousemove");
+                        canvas.removeClass('hand');
+                    }
+                }
+            });
+
+            var seedAnimate = eval(Jscex.compile("async", function () {
+                seed.draw();
+                while (hold) {
+                    $await(Jscex.Async.sleep(10));
+                }
+                while (seed.canScale()) {
+                    seed.scale(0.95);
+                    $await(Jscex.Async.sleep(10));
+                }
+                while (seed.canMove()) {
+                    seed.move(0, 2);
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                }
+            }));
+
+            var growAnimate = eval(Jscex.compile("async", function () {
+                do {
+                    tree.grow();
+                    $await(Jscex.Async.sleep(10));
+                } while (tree.canGrow());
+            }));
+
+            var flowAnimate = eval(Jscex.compile("async", function () {
+                do {
+                    tree.flower(2);
+                    $await(Jscex.Async.sleep(10));
+                } while (tree.canFlower());
+            }));
+
+            var moveAnimate = eval(Jscex.compile("async", function () {
+                tree.snapshot("p1", 240, 0, 610, 680);
+                while (tree.move("p1", 500, 0)) {
+                    foot.draw();
+                    $await(Jscex.Async.sleep(10));
+                }
+                foot.draw();
+                tree.snapshot("p2", 500, 0, 610, 680);
+                canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+                canvas.css("background", "#ffe");
+                $await(Jscex.Async.sleep(300));
+                canvas.css("background", "none");
+            }));
+
+            var jumpAnimate = eval(Jscex.compile("async", function () {
+                while (true) {
+                    tree.ctx.clearRect(0, 0, width, height);
+                    tree.jump();
+                    foot.draw();
+                    $await(Jscex.Async.sleep(25));
+                }
+            }));
+
+            var textAnimate = eval(Jscex.compile("async", function () {
+                $("#code").show().typewriter();
+            }));
+
+            var runAsync = eval(Jscex.compile("async", function () {
+                $await(seedAnimate());
+                $await(growAnimate());
+                $await(flowAnimate());
+                $await(moveAnimate());
+                textAnimate().start();
+                $await(jumpAnimate());
+            }));
+
+            runAsync().start();
+        })();
+    </script>
 </body>
 </html>
